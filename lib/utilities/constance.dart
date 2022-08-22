@@ -13,7 +13,6 @@ Color kSignColor = const Color(0xFFa9a29f);
 Color kTitleColor = const Color(0xFF5c524f);
 Color kMainBlackColor = const Color(0xFF332d2b);
 Color kyellowColor = const Color(0xFFffd379);
-
 //spaces
  const SizedBox kVerticalSpace = SizedBox(height: 10,);
  const SizedBox kHorizontalSpace = SizedBox(width: 10,);

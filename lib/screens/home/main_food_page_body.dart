@@ -1,8 +1,10 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:foodapp/screens/food_details/popular_food_details_screen.dart';
 import 'package:foodapp/utilities/constance.dart';
 import 'package:foodapp/utilities/dimensions.dart';
 import 'package:foodapp/widgets/big_text.dart';
+import 'package:foodapp/widgets/column_icon_text.dart';
 import 'package:foodapp/widgets/row_icon_text.dart';
 import 'package:foodapp/widgets/small_text.dart';
 
@@ -31,6 +33,7 @@ class _MainFoodPageBodyState extends State<MainFoodPageBody> {
 
   @override
   void dispose() {
+    super.dispose();
     pageController.dispose();
   }
 
@@ -71,64 +74,117 @@ class _MainFoodPageBodyState extends State<MainFoodPageBody> {
           ),
         ),
         //PopularText
-        SizedBox(height: Dimensions.height30,),
+        SizedBox(
+          height: Dimensions.height30,
+        ),
         Container(
-          margin: EdgeInsets.only(left: Dimensions.width30),
+          margin: EdgeInsets.only(
+              left: Dimensions.width20, bottom: Dimensions.height20),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               const BigText(text: 'Popular '),
-              SizedBox(width: Dimensions.width10,),
-              Container(margin: const EdgeInsets.only(bottom: 4) ,child: const BigText(text: '.' ,color: Colors.black26,)),
-              SizedBox(width: Dimensions.width10,),
-              Container(margin:const EdgeInsets.only(bottom: 3),child: const SmallText(text: 'Food pairing'))
+              SizedBox(
+                width: Dimensions.width10,
+              ),
+              Container(
+                  margin: const EdgeInsets.only(bottom: 4),
+                  child: const BigText(
+                    text: '.',
+                    color: Colors.black26,
+                  )),
+              SizedBox(
+                width: Dimensions.width10,
+              ),
+              Container(
+                  margin: const EdgeInsets.only(bottom: 3),
+                  child: const SmallText(text: 'Food pairing'))
             ],
           ),
         ),
 
         //food image scrollable
-       Container(
-         height: 900,
-         margin: EdgeInsets.only(left: Dimensions.width20,top: Dimensions.height20,right: Dimensions.width20),
-         child: ListView.builder(
-           scrollDirection: Axis.vertical,
-           physics: const NeverScrollableScrollPhysics(),
-           itemCount: 10,
-             itemBuilder: (context,index){
-              return Container(
-                margin: EdgeInsets.only(bottom: Dimensions.height20),
-                child: Row(
-                  children: [
-                    Container(
-                     height: 120,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius20),
-                        image: DecorationImage(
-                          image:AssetImage('assets/images/foodpage1.png'),
-                          fit: BoxFit.cover
-                        )
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 100,
+        ListView.builder(
+            scrollDirection: Axis.vertical,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PopularFoodDetailsScreen()));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: Dimensions.width20,
+                    right: Dimensions.width20,
+                    bottom: Dimensions.height20,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: Dimensions.height120,
+                        width: Dimensions.width120,
                         decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10)
-                          )
-                        ),
-
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20),
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/foodpage1.png'),
+                                fit: BoxFit.cover)),
                       ),
-                    )
-                  ],
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Dimensions.width10,
+                              vertical: Dimensions.height15),
+                          height: Dimensions.height100,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topRight:
+                                      Radius.circular(Dimensions.radius10),
+                                  bottomRight:
+                                      Radius.circular(Dimensions.radius10))),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              BigText(
+                                text: 'Newtrtios foosd meals iiiiii',
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
+                              SmallText(text: 'with chinease charactor stick'),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  RowIconText(
+                                      icon: Icons.circle_sharp,
+                                      text: 'Normal',
+                                      color: kIconColor1),
+                                  RowIconText(
+                                      icon: Icons.location_on,
+                                      text: '1.7km',
+                                      color: kMainColor),
+                                  RowIconText(
+                                      icon: Icons.access_time_rounded,
+                                      text: '32min',
+                                      color: kIconColor2)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
-             }
-         ),
-       )
+            }),
       ],
     );
   }
@@ -200,56 +256,7 @@ class _MainFoodPageBodyState extends State<MainFoodPageBody> {
                   ]),
               child: Container(
                 padding: EdgeInsets.all(Dimensions.height15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const BigText(text: 'Chinese Side'),
-                    SizedBox(
-                      height: Dimensions.height10,
-                    ),
-                    //central row
-                    Row(
-                      children: [
-                        //rating
-                        Wrap(
-                          children: List.generate(
-                              5,
-                              (index) => Icon(
-                                    Icons.star,
-                                    size: Dimensions.iconSize15,
-                                    color: kMainColor,
-                                  )),
-                        ),
-                        kHorizontalSpace,
-                        SmallText(text: '4.5'),
-                        kHorizontalSpace,
-                        SmallText(text: '123'),
-                        SmallText(text: 'Comment'),
-                      ],
-                    ),
-                    SizedBox(
-                      height: Dimensions.height20,
-                    ),
-                    //icon text row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        RowIconText(
-                            icon: Icons.circle_sharp,
-                            text: 'Normal',
-                            color: kIconColor1),
-                        RowIconText(
-                            icon: Icons.location_on,
-                            text: '1.7km',
-                            color: kMainColor),
-                        RowIconText(
-                            icon: Icons.access_time_rounded,
-                            text: '32min',
-                            color: kIconColor2)
-                      ],
-                    )
-                  ],
-                ),
+                child: const ColumnIconText(headingText: 'Biriyani')
               ),
             ),
           )

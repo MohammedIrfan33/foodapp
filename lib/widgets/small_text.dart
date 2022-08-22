@@ -19,7 +19,7 @@ class SmallText extends StatelessWidget {
         fontFamily: 'Roboto',
         color: color,
         fontSize: size,
-        height: 1.2,
+        height: 1.5,
       ),
     );
   }

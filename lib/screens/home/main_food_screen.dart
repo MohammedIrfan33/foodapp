@@ -5,14 +5,14 @@ import 'package:foodapp/utilities/dimensions.dart';
 import 'package:foodapp/widgets/big_text.dart';
 import 'package:foodapp/widgets/small_text.dart';
 
-class MainFoodPage extends StatefulWidget {
-  const MainFoodPage({Key? key}) : super(key: key);
+class MainFoodScreen extends StatefulWidget {
+  const MainFoodScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainFoodPage> createState() => _MainFoodPageState();
+  State<MainFoodScreen> createState() => _MainFoodScreenState();
 }
 
-class _MainFoodPageState extends State<MainFoodPage> {
+class _MainFoodScreenState extends State<MainFoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

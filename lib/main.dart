@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/screens/home/main_food_page.dart';
+import 'package:foodapp/screens/home/main_food_screen.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily:'Roboto'
       ),
-      home: MainFoodPage(),
+      home: MainFoodScreen(),
     );
   }
 }
